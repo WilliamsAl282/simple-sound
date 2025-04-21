@@ -8,6 +8,7 @@ import shapes
 def init_game():
     pygame.init()
     pygame.font.init()
+    pygame.mixer.init()
     screen = pygame.display.set_mode((config.WINDOW_WIDTH, config.WINDOW_HEIGHT)) # Use constanst from config
     pygame.display.set_caption(config.TITLE)
     return screen
@@ -19,6 +20,8 @@ def handle_events():
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 return False
+        if keys[pygame.K_p]:
+            
     return True
 
 
@@ -36,11 +39,16 @@ def main():
     
     text_font = pygame.font.SysFont('Arial', 30, bold = False, italic = False)
 
+    base_y = 30
+
+    line_height = 20
+
     while running:
         running = handle_events()
-        screen.fill(config.WHITE) # Use color from config
+        screen.fill(config.BLUE) # Use color from config
         
-        draw_text(screen, "hello", text_font, config.BLUE, 500,500 )
+        draw_text(screen, "Press 'a' to play the bonus sound effect", text_font, config.WHITE, 90,300 )
+        draw_text(screen, "Press 'b' to play the character sound effect", text_font, config.WHITE, 130,300 )
         pygame.display.flip()
 
         # Limit the frame rate to the specified frames per second (FPS)
